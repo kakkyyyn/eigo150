@@ -2,7 +2,7 @@
   "name": "eikou150",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kakkyyyn.github.io/eigokou150",
+  "homepage": "https://kakkyyyn.github.io/eigo150",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -12,6 +12,8 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",

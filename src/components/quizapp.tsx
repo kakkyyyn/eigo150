@@ -1,159 +1,252 @@
-import React, { useState } from "react";
-import jpEnData from "./jp_en_100.json";
-import { Button } from "./ui/button";
-import { Card, CardContent } from "./ui/card";
-import { Input } from "./ui/input";
+import React, { useState, useMemo } from "react";
+import jpEnData from "../data/jp_en_100.json";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+
+// 日本語フォント（Base64形式）読み込み
+import { NotoSansJP } from "../fonts/NotoSansJP-Regular";
 
 type Question = {
   和文: string;
   英文: string;
+  chapter: number;
 };
 
-const QuizApp = () => {
-  const [numQuestions, setNumQuestions] = useState(5);
-  const [questions, setQuestions] = useState<Question[]>([]);
+export const QuizApp = () => {
+  const [selectedChapter, setSelectedChapter] = useState<number | "all">("all");
+  const [questionCount, setQuestionCount] = useState<number | "all">("all");
+  const [quizStarted, setQuizStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [userInput, setUserInput] = useState("");
-  const [correctCount, setCorrectCount] = useState(0);
+  const [answer, setAnswer] = useState("");
+  const [score, setScore] = useState(0);
+  const [showResult, setShowResult] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [step, setStep] = useState<"input" | "quiz" | "result">("input");
+  const [lastAnswerCorrect, setLastAnswerCorrect] = useState<boolean | null>(null);
 
-  const startQuiz = () => {
-    const shuffled = [...jpEnData]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, numQuestions);
-    setQuestions(shuffled);
-    setCurrentIndex(0);
-    setCorrectCount(0);
-    setUserInput("");
-    setShowAnswer(false);
-    setStep("quiz");
-  };
+  // 存在するchapterだけ取得
+  const availableChapters = useMemo(() => {
+    const chapters = Array.from(new Set(jpEnData.map((q) => q.chapter)));
+    chapters.sort((a, b) => a - b);
+    return chapters;
+  }, []);
 
-  const handleNext = () => {
-    if (
-      userInput.trim().toLowerCase() ===
-      questions[currentIndex].英文.toLowerCase()
-    ) {
-      setCorrectCount((prev) => prev + 1);
-    }
+  const quizData = useMemo(() => {
+    const filtered = jpEnData.filter(
+      (q) => selectedChapter === "all" || q.chapter === selectedChapter
+    );
+    const shuffled = filtered.sort(() => Math.random() - 0.5);
+    return questionCount === "all" ? shuffled : shuffled.slice(0, questionCount);
+  }, [selectedChapter, questionCount]);
+
+  const currentQuestion = quizData[currentIndex];
+
+  const handleSubmit = () => {
+    const isCorrect = answer.trim().toLowerCase() === currentQuestion.英文.trim().toLowerCase();
+    setLastAnswerCorrect(isCorrect);
+    if (isCorrect) setScore((prev) => prev + 1);
     setShowAnswer(true);
   };
 
-  const handleContinue = () => {
+  const handleNext = () => {
     setShowAnswer(false);
-    setUserInput("");
-    if (currentIndex + 1 < questions.length) {
+    setAnswer("");
+    if (currentIndex + 1 < quizData.length) {
       setCurrentIndex((prev) => prev + 1);
     } else {
-      setStep("result");
+      setShowResult(true);
     }
   };
 
-  const resetQuiz = () => {
-    setStep("input");
-    setUserInput("");
-    setQuestions([]);
+  const handleStart = () => {
+    setQuizStarted(true);
     setCurrentIndex(0);
-    setCorrectCount(0);
+    setScore(0);
+    setAnswer("");
+    setShowResult(false);
     setShowAnswer(false);
   };
 
-  const getProgress = () =>
-    Math.round(((currentIndex + (showAnswer ? 1 : 0)) / questions.length) * 100);
+  const exportPDF = () => {
+    const doc = new jsPDF();
+
+    // フォント登録（文字化け防止）
+    doc.addFileToVFS("NotoSansJP-Regular.ttf", NotoSansJP);
+    doc.addFont("NotoSansJP-Regular.ttf", "NotoSansJP", "normal");
+    doc.setFont("NotoSansJP");
+
+    doc.setFontSize(14);
+    doc.text(
+      `Chapter ${selectedChapter === "all" ? "All" : selectedChapter} - 英文・和文一覧`,
+      14,
+      20
+    );
+
+    const dataToExport = jpEnData.filter(
+      (item) => selectedChapter === "all" || item.chapter === selectedChapter
+    );
+
+    autoTable(doc, {
+      head: [["No", "英文", "和文"]],
+      body: dataToExport.map((item, i) => [i + 1, item.英文, item.和文]),
+      startY: 30,
+      styles: { font: "NotoSansJP", fontSize: 10 },
+      columnStyles: {
+        0: {
+          cellWidth: 15,
+          halign: "center",
+          fontStyle: "bold",
+          minCellHeight: 10,
+          overflow: "ellipsize", // 文字オーバーフローは省略記号
+          cellPadding: 3,
+        },
+        1: { cellWidth: 80 },
+        2: { cellWidth: 80 },
+      },
+    });
+
+    doc.save(`Chapter_${selectedChapter === "all" ? "All" : selectedChapter}.pdf`);
+  };
+
+  const exportOnlyJapanesePDF = () => {
+    const doc = new jsPDF();
+
+    doc.addFileToVFS("NotoSansJP-Regular.ttf", NotoSansJP);
+    doc.addFont("NotoSansJP-Regular.ttf", "NotoSansJP", "normal");
+    doc.setFont("NotoSansJP");
+
+    doc.setFontSize(14);
+    doc.text(
+      `Chapter ${selectedChapter === "all" ? "All" : selectedChapter} - 和文一覧`,
+      14,
+      20
+    );
+
+    const dataToExport = jpEnData.filter(
+      (item) => selectedChapter === "all" || item.chapter === selectedChapter
+    );
+
+    autoTable(doc, {
+      head: [["No", "和文"]],
+      body: dataToExport.map((item, i) => [i + 1, item.和文]),
+      startY: 30,
+      styles: { font: "NotoSansJP", fontSize: 10 },
+      columnStyles: {
+        0: {
+          cellWidth: 15,
+          halign: "center",
+          fontStyle: "bold",
+          minCellHeight: 10,
+          overflow: "ellipsize",
+          cellPadding: 3,
+        },
+        1: { cellWidth: 160 },
+      },
+    });
+
+    doc.save(`Chapter_${selectedChapter === "all" ? "All" : selectedChapter}_OnlyJapanese.pdf`);
+  };
+
+  if (showResult) {
+    return (
+      <div>
+        <h2>結果</h2>
+        <p>
+          {quizData.length}問中 {score}問正解！
+        </p>
+        <button onClick={() => window.location.reload()}>もう一度</button>
+      </div>
+    );
+  }
 
   return (
-    <div className="p-4">
-      {step === "input" && (
-        <div>
-          <Input
-            type="number"
-            min={1}
-            max={jpEnData.length}
-            value={numQuestions}
-            onChange={(e) => {
-              const val = Number(e.target.value);
-              if (val > 0 && val <= jpEnData.length) setNumQuestions(val);
-            }}
-            placeholder={`1〜${jpEnData.length}で問題数を入力`}
-          />
-          <Button onClick={startQuiz} className="mt-2">
+    <div>
+      <h1>英語の構文150</h1>
+
+      {!quizStarted && (
+        <div style={{ marginBottom: "1rem" }}>
+          <label>
+            Chapter:
+            <select
+              value={selectedChapter}
+              onChange={(e) => {
+                const val = e.target.value;
+                setSelectedChapter(val === "all" ? "all" : parseInt(val));
+              }}
+            >
+              <option value="all">All</option>
+              {availableChapters.map((chap) => (
+                <option key={chap} value={chap}>
+                  {chap}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label style={{ marginLeft: "1rem" }}>
+            問題数:
+            <select
+              value={questionCount}
+              onChange={(e) => {
+                const val = e.target.value;
+                setQuestionCount(val === "all" ? "all" : parseInt(val));
+              }}
+            >
+              <option value="all">All</option>
+              {[5, 10, 20, 30, 50].map((num) => (
+                <option key={num} value={num}>
+                  {num}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <button style={{ marginLeft: "1rem" }} onClick={exportPDF}>
+            英文・和文PDF出力
+          </button>
+
+          <button style={{ marginLeft: "1rem" }} onClick={exportOnlyJapanesePDF}>
+            和文だけPDF出力
+          </button>
+
+          <button style={{ marginLeft: "1rem" }} onClick={handleStart}>
             スタート
-          </Button>
+          </button>
         </div>
       )}
 
-      {step === "quiz" && (
-        <Card>
-          <CardContent>
-            {/* 進捗バー */}
-            <div className="mb-4">
-              <div className="h-3 w-full bg-gray-300 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-blue-500 transition-all"
-                  style={{ width: `${getProgress()}%` }}
-                ></div>
-              </div>
-              <p className="text-sm text-gray-600 mt-1">
-                {currentIndex + (showAnswer ? 1 : 0)} / {questions.length}
+      {quizStarted && currentQuestion && !showResult && (
+        <div>
+          <p>
+            <strong>
+              問題 {currentIndex + 1} / {quizData.length}
+            </strong>
+          </p>
+          <p>{currentQuestion.和文}</p>
+
+          {!showAnswer ? (
+            <>
+              <input
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+              />
+              <button onClick={handleSubmit}>回答</button>
+            </>
+          ) : (
+            <>
+              <p style={{ color: lastAnswerCorrect ? "green" : "red" }}>
+                {lastAnswerCorrect ? "正解！" : "不正解！"}
               </p>
-            </div>
-
-            <p className="text-xl font-semibold mb-2">
-              {questions[currentIndex].和文}
-            </p>
-
-            <Input
-              value={userInput}
-              onChange={(e) => setUserInput(e.target.value)}
-              placeholder="英訳を入力"
-              disabled={showAnswer}
-            />
-
-            {!showAnswer && (
-              <Button onClick={handleNext} className="mt-2">
-                答え合わせ
-              </Button>
-            )}
-
-            {showAnswer && (
-              <div className="mt-2">
-                {userInput.trim().toLowerCase() ===
-                questions[currentIndex].英文.toLowerCase() ? (
-                  <p className="text-green-600 font-semibold">正解です！</p>
-                ) : (
-                  <>
-                    <p className="text-red-600 font-semibold">不正解です。</p>
-                    <p>正解: {questions[currentIndex].英文}</p>
-                  </>
-                )}
-
-                <Button onClick={handleContinue} className="mt-2">
-                  {currentIndex + 1 === questions.length
-                    ? "結果を見る"
-                    : "次の問題へ"}
-                </Button>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      )}
-
-      {step === "result" && (
-        <Card>
-          <CardContent>
-            <p className="text-lg font-bold">結果発表</p>
-            <p>
-              正解数: {correctCount} / {questions.length}
-            </p>
-            <Button onClick={resetQuiz} className="mt-4">
-              もう一度挑戦
-            </Button>
-          </CardContent>
-        </Card>
+              <p>
+                正解: <strong>{currentQuestion.英文}</strong>（Chapter:{" "}
+                {currentQuestion.chapter}）
+              </p>
+              <button onClick={handleNext}>次の問題</button>
+            </>
+          )}
+        </div>
       )}
     </div>
   );
 };
-
-export default QuizApp;

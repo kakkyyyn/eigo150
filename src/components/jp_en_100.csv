@@ -1,101 +1,71 @@
-和文,英文
-こんにちは。,Hello.
-今日はいい天気ですね。,It's a nice day today.
-お名前は何ですか？,What's your name?
-私は学生です。,I am a student.
-どこに住んでいますか？,Where do you live?
-これは何ですか？,What is this?
-私は日本に行きたいです。,I want to go to Japan.
-英語を勉強しています。,I am studying English.
-趣味は何ですか？,What is your hobby?
-音楽が好きです。,I like music.
-これはとても面白いです。,This is very interesting.
-それは本当ですか？,Is that true?
-はい、そうです。,"Yes, it is."
-いいえ、違います。,"No, it's not."
-少し日本語が話せます。,I can speak a little Japanese.
-旅行が好きです。,I like traveling.
-私は兄が二人います。,I have two older brothers.
-今、何時ですか？,What time is it now?
-お腹がすきました。,I'm hungry.
-疲れました。,I'm tired.
-助けてください。,Please help me.
-分かりました。,I understand.
-分かりません。,I don't understand.
-もう一度言ってください。,Please say it again.
-ゆっくり話してください。,Please speak slowly.
-これはいくらですか？,How much is this?
-トイレはどこですか？,Where is the bathroom?
-大丈夫です。,It's okay.
-問題ありません。,No problem.
-おめでとうございます！,Congratulations!
-誕生日おめでとう！,Happy Birthday!
-メリークリスマス！,Merry Christmas!
-明けましておめでとうございます。,Happy New Year.
-良い一日を！,Have a nice day!
-行ってきます。,I'm leaving now.
-行ってらっしゃい。,Take care.
-ただいま。,I'm home.
-おかえりなさい。,Welcome back.
-おやすみなさい。,Good night.
-おはようございます。,Good morning.
-いただきます。,Let's eat.
-ごちそうさまでした。,Thank you for the meal.
-すみません。,Excuse me.
-ありがとう。,Thank you.
-どういたしまして。,You're welcome.
-ごめんなさい。,I'm sorry.
-よろしくお願いします。,Nice to meet you.
-初めまして。,Nice to meet you.
-さようなら。,Goodbye.
-また会いましょう。,See you again.
-電話番号を教えてください。,Please tell me your phone number.
-写真を撮ってもいいですか？,Can I take a picture?
-静かにしてください。,Please be quiet.
-気をつけて。,Be careful.
-急いでください。,Please hurry.
-どうしたの？,What's wrong?
-信じられません。,I can't believe it.
-それは残念です。,That's too bad.
-お大事に。,Take care.
-何歳ですか？,How old are you?
-学生ですか？,Are you a student?
-今日は何曜日ですか？,What day is it today?
-明日は休みです。,Tomorrow is a day off.
-この近くに駅はありますか？,Is there a station near here?
-写真を見せてください。,Please show me the photo.
-それをください。,I'll take that.
-うれしいです。,I'm happy.
-悲しいです。,I'm sad.
-寒いですね。,"It's cold, isn't it?"
-暑いですね。,"It's hot, isn't it?"
-眠いです。,I'm sleepy.
-びっくりしました。,I was surprised.
-楽しかったです。,It was fun.
-面白かったです。,It was interesting.
-疲れましたか？,Are you tired?
-忙しいですか？,Are you busy?
-時間がありますか？,Do you have time?
-今、どこですか？,Where are you now?
-ちょっと待ってください。,Please wait a moment.
-急に雨が降りました。,It suddenly rained.
-電車が遅れています。,The train is delayed.
-渋滞しています。,There is a traffic jam.
-今日は休みですか？,Is today a day off?
-明日は学校です。,I have school tomorrow.
-友達に会います。,I will meet my friend.
-映画を見に行きます。,I will go to see a movie.
-買い物に行きます。,I will go shopping.
-家にいます。,I will stay home.
-掃除をします。,I will clean.
-勉強します。,I will study.
-運動します。,I will exercise.
-寝ます。,I will sleep.
-起きます。,I will wake up.
-シャワーを浴びます。,I will take a shower.
-朝ごはんを食べます。,I will eat breakfast.
-昼ごはんを食べます。,I will eat lunch.
-晩ごはんを食べます。,I will eat dinner.
-テレビを見ます。,I will watch TV.
-本を読みます。,I will read a book.
-音楽を聴きます。,I will listen to music.
+Column1,Column2,Column3
+その失敗のせいで彼は仕事を失った,That mistake cost him his job.,16
+事故のせいで彼は命を失うところだった。,The car accident almost cost him his life.,16
+君たちが試験に合格する人は随分努力が必要だった(toから）,To pass the exam cost you much effort.,16
+君たちが試験に合格する人は随分努力が必要だった(itから）,It cost you much effort to pass the exam.,16
+ヘルメットを被っていたおかげで病院にいかなくてすんだ。,My helmet saved me a trip to the hospital.,16
+君が手伝ってくれてとても手間が省けたよ,You help me saved me a lot of work.,16
+ちょっと考えれば自分の間違いに気づくはずだ。,A moment's thought will tell you that you are wrong.,16
+彼女がゲームを楽しんでいることは顔つきからわかる,The look on her fae suggests that she is enjoying the game.,16
+今日の新聞に大統領はタイを訪問する予定だと書いてあった。,Today's newspaper said that the president would visit the thailand.,16
+休みを取るのは君のためになるはずだ。,It will do you good to have a vacation.,16
+この道を行けば学校につきますよ。,This street will take you to the school.,16
+10分あるくと学校につくよ。,Ten minutes' walk take you to the school.,16
+なぜ君はここまで来たの。,What has brought you here?,16
+失敗のため彼女はその仕事を辞めるきになった。,Her failures led her to quit the job.,16
+彼は交通事故によって視力を奪われた。,The traffic accident deprived him of his sight.,16
+大雨のせいで私は家に戻れなかった。,The heacy rain prevented me from going home.,16
+彼は何があってもジェーン(Jane)と結婚するだろう。,Nothing will stop him from marrying Jane.,16
+その台風のせいで飛行機は離陸することができなかった。,The typhoon kept the airplane from taking off.,16
+この写真を見るとビルを思い出します。,This picture reminds me of Bill.,16
+ボランティアの仕事があるので私はとても忙しい,My volunteer work keeps me very busy.,16
+その面白い小説が原因で私は一晩中起きていた,The interesting novel ept me awake all night.,16
+事故のニュースを聞いてかれは不安になった。,The news of the accident left him uneasy.,16
+その失敗が彼を絶望に追いやった,The failure drove him to despair.,16
+ぐっすり眠れば気分が良くなります。,A good night's sleep will set you right.,16
+この薬を飲めば気分が良くなるだろう,This medicine will make you feel better.,16
+祖母の遺産で太郎はその家を買うことができた,Money from his aunt allowed taro to buy the house.,16
+彼は彼らがすぐ行動すべきであり、それが最善の解決策だと信じている,He thinks the should act soon and that it's the best solution.,16
+民主主義とは人民の人民による人民のための政治のことだ。,"Democracy is the government of the people,by the people,and for the people.",16
+政府はそこを観光とビジネスのセンターにするつもりだ。,The government wants to turn it into a tourism and business center.,16
+嘘は本当かもしれないし、本当ではないかもしれない。,The rumor may or may not  be true.,16
+彼らは子供時代仲良しだった,They were good friends when young.,16
+コールドチキンはwサラダと一緒に食べるとおいしい,Cold chicken is delicious when eaten with salad.,16
+ハンサムだったが、彼は尊敬されなかった。,"Though handsome,he was not respected.",16
+誤りがあれば正せ,"Correct errors,if any.",16
+必要があれば、いつでも電話してください。,call me at any time if necessary.,16
+疲れたと感じたので、ビルはいつもより早く寝た。,"Feeling tired,Bill went to bed earlier than usual.",4
+幸せそうに微笑みながら彼はそこに座っていた(2つ),He was sitting there smiling happily. He wa sitting there while he was smiling happily.,4
+彼女は７ページを開き、そして声に出して読み始めた。(2つ）,"She opened to page7,Beginning read aloud.,She opened to page7,and she began to read aloud.",4
+熱があったので彼女は買い物に出かけることができなかった。（２つ）,"Having a fever,she couldn't go shoppinng.,Because she had a fever,she couldn't go shopping.",4
+その知らせを聞き、彼は部屋から飛び出していった。(２つ),"When he heard the news,he rushed out of the room,Hearing the news,he rushed out of the room.",4
+もし左に曲がれば、高い建物が見つかるでしょう。(2つ),"Turning to the left there,you will find a tall building.,If you turn to the left there,you will find a tall building.",4
+怒らせたくはなかったのだが、それでも彼は怒らせてしまった。(2つ),"Not wanting to give offense,he did so all the same.,Although he didn't want to give offense,he did so all the same.",4
+彼女から頼りがなかったので、私は彼女が病気に違いないと思った（２つ）,"Not having heard from her,I thought she must be ill.,As I had not heard from her, I thought she must be ill.",4
+その光景にショックを受けて、彼女は動くことができなかった。,"Shocked at the sight,she couldn't move.",4
+ビルは彼女の死の知らせに驚いて一人立ち尽くしていた。(２つ),"Bill stood alone,surprised at the news of her death.,Bill stood alone,while he was surprised at the news of her death.]",4
+そのレストランは1885年に回転され、そして１９９８年に閉店した(２つ）,"Established in 1885,the restaurant was closed in 1998.,The restaurant was estabilished in 1885,and it was closed in 1998.",4
+やさしい英語で書かれているので、その本は多くの人に読まれるだろう。（２つ）,"Written in easy English,theb book will be read bu many people.As it is written in easy English, the book will be read by many people.",4
+いくつか質問を尋ねられたとき、彼女は答えることができなかった。（２つ）,"Asked some questions,she was not able to answer.,When she was asked some questions,she was not able to answer.",4
+もしこの家を白く塗ると、実際より大きく見えるでしょう。(2つ）,"Painted white,this house will look bigger.,If this house is painted white,it will look bigger..",4
+右目の上が切れたが、ボクサーは試合を続けた。(2tu),"Cut above the right eye,the boxer continued the fight.,Though he was cut above the right eye,the boxer continued the fight.",4
+冬が終わったので、雪が溶け始めた。,"The winter being over,the snow started to melt.",4
+会議が終わったので、私達はおしゃべりを楽しんだ,"The meeting being over,we enjoyed having a chat.",4
+すべてを考慮にいれると、その街は素敵な街だ。,"All things considered,it's a good town,",4
+一般的に行って、日本人は勤勉だ,"Generally speaking,Japanese people are diligent.",4
+率直にうと君の上着は気に入らない。,"Frankly speaking, I don't like your jacket.",4
+彼女の表情から判断すると、とても驚いている,"Judging by the expression on her face,she is very surprised.",4
+空模様からすると今夜雨が降りそうだ,"Judging from the look of the sky,it's going to rain tonight.",4
+彼の病気を考慮にいれると、彼は今日学校に行くべきではない,"Taking his illness into account,he should not go to school today.",4
+あらゆることを考慮にいれると、彼は良い教師と言える,"Taking all thins into consideration,he is a good teacher.",4
+経験不足を考慮にいれると、彼女の演技は素晴らしかった,"Given her lack of experience,her performance was excellent.",4
+彼女の年の割には若く見える,She looks young considering her age.,4
+いかに少ししか勉強しなかったを考えるとスーは試験ではよく頑張ったほうだ,Sue did well in her exams considering how she studied.,4
+未経験にしては、彼女はかなりよくやった,"Considering that she has no experience,she did quigte well.",4
+ファーブルは80年間昆虫の研究に取り組んだ,Fabre spent 80 years studying insects.,4
+北海道旅行に100万円使うつもりだ,I'm going to spent 1 milion yen traveling to hokkaido.,4
+彼女は新しい靴を履いて歩くのに随分苦労した,She had great difficulty walking in her new shoes.,4
+彼は最近寝付きが悪い,He has trouble falling asleep these days.,4
+アルバイトの口は簡単に見つかりますよ,You will have no dificulty getting a part-time job.,4
+私gたちはいちごを積むのがとても楽しかった,Wwe had a lot of fun picking berries,4
+毛糸は試験勉強でこのところずっと忙しい,Kate has been busy studying for her exams,4
