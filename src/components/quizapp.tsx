@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import jpEnData from "../data/jp_en_100.json";
+import jpEnData from "../components/ui/output.json";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 
