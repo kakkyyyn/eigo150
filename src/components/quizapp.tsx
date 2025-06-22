@@ -23,12 +23,12 @@ export const QuizApp = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState<boolean | null>(null);
 
-  // 存在するchapterだけ取得
+  // 存在するchapterだけ取得（自動更新対応）
   const availableChapters = useMemo(() => {
     const chapters = Array.from(new Set(jpEnData.map((q) => q.chapter)));
     chapters.sort((a, b) => a - b);
     return chapters;
-  }, []);
+  }, [jpEnData]);
 
   const quizData = useMemo(() => {
     const filtered = jpEnData.filter(
@@ -69,7 +69,6 @@ export const QuizApp = () => {
   const exportPDF = () => {
     const doc = new jsPDF();
 
-    // フォント登録（文字化け防止）
     doc.addFileToVFS("NotoSansJP-Regular.ttf", NotoSansJP);
     doc.addFont("NotoSansJP-Regular.ttf", "NotoSansJP", "normal");
     doc.setFont("NotoSansJP");
@@ -96,7 +95,7 @@ export const QuizApp = () => {
           halign: "center",
           fontStyle: "bold",
           minCellHeight: 10,
-          overflow: "ellipsize", // 文字オーバーフローは省略記号
+          overflow: "ellipsize",
           cellPadding: 3,
         },
         1: { cellWidth: 80 },
